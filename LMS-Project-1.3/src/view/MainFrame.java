@@ -1,5 +1,7 @@
 package view;
 
+import view.course.AddCourseFrame;
+import view.course.AddCoursePanel;
 import view.student.AddStudentFrame;
 import view.student.AddStudentPanel;
 import view.student.StudentListPanel;
@@ -9,6 +11,9 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
     public static AddStudentFrame addStudentFrame = new AddStudentFrame();
+
+    public static AddCourseFrame addCourseFrame = new AddCourseFrame();
+
     public MainFrame(){
         setTitle("LMS");
 

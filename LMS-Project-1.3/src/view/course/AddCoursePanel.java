@@ -1,10 +1,12 @@
 package view.course;
 
 import model.Course;
+import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+
 
 public class AddCoursePanel extends JPanel {
     public AddCoursePanel() {
@@ -12,13 +14,14 @@ public class AddCoursePanel extends JPanel {
         JTextField description = new JTextField(10);
 
         JButton addCourseButton = new JButton("Дабавить");
-        addCourseButton.addActionListener(new ActionListener() {
+        addCourseButton.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!title.getText().isEmpty() && !description.getText().isEmpty()){
                     new Course(title.getText(), description.getText());
                     title.setText("");
                     description.setText("");
+                    MainFrame.addCourseFrame.setVisible(false);
                 }
             }
         });

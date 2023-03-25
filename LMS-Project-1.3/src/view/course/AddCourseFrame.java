@@ -13,7 +13,7 @@ public class AddCourseFrame extends JFrame {
 
 
 
-        setVisible(true);
+        setVisible(false);
     }
 
 }

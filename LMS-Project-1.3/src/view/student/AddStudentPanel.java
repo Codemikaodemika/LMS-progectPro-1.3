@@ -1,9 +1,11 @@
 package view.student;
 
 import model.Student;
+import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+
 
 public class AddStudentPanel extends JPanel {
     public AddStudentPanel(){
@@ -18,7 +20,7 @@ public class AddStudentPanel extends JPanel {
                     new Student(name.getText(), surname.getText());
                     name.setText("");
                     surname.setText("");
-
+                    MainFrame.addStudentFrame.setVisible(false);
                 }
             }
         });

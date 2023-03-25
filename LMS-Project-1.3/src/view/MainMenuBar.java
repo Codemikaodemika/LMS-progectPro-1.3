@@ -1,6 +1,8 @@
 package view;
 
 
+import com.company.model.Main;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,17 +10,8 @@ import java.awt.event.ActionListener;
 public class MainMenuBar extends JMenuBar {
     public MainMenuBar(){
         add(fileMenu());
+        add(lists());
         add(helpMenu());
-    }
-    private JMenu helpMenu(){
-        JMenu help = new JMenu("Помощь");
-        JMenu aboutProgramme = new JMenu("О программе");
-        JMenu reference = new JMenu("Справка");
-
-        help.add(aboutProgramme);
-        help.add(reference);
-
-        return help;
     }
     private JMenu fileMenu(){
         JMenu file = new JMenu("Файл");
@@ -52,4 +45,45 @@ public class MainMenuBar extends JMenuBar {
         });
         return  file;
     }
+
+    private JMenu lists(){
+        JMenu lists = new JMenu("Списки");
+        JMenuItem courses = new JMenuItem("Курсы");
+        JMenuItem students = new JMenuItem("Студенты");
+
+        lists.add(courses);
+        lists.add(students);
+
+        courses.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.mainFrame.remove(MainFrame.studentListPanel);
+                Main.mainFrame.add(MainFrame.courseListPanel);
+                Main.mainFrame.pack();
+            }
+        });
+
+        students.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.mainFrame.remove(MainFrame.courseListPanel);
+                Main.mainFrame.add(MainFrame.studentListPanel);
+                Main.mainFrame.pack();
+            }
+        });
+
+        return lists;
+    }
+
+    private JMenu helpMenu(){
+        JMenu help = new JMenu("Помощь");
+        JMenuItem aboutProgramme = new JMenuItem("О программе");
+        JMenuItem reference = new JMenuItem("Справка");
+
+        help.add(aboutProgramme);
+        help.add(reference);
+
+        return help;
+    }
+
 }

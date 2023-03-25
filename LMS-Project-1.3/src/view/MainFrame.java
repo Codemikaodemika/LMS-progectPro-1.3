@@ -2,6 +2,7 @@ package view;
 
 import view.course.AddCourseFrame;
 import view.course.AddCoursePanel;
+import view.course.CourseListPanel;
 import view.student.AddStudentFrame;
 import view.student.AddStudentPanel;
 import view.student.StudentListPanel;
@@ -14,6 +15,10 @@ public class MainFrame extends JFrame {
 
     public static AddCourseFrame addCourseFrame = new AddCourseFrame();
 
+    public static StudentListPanel studentListPanel = new StudentListPanel();
+
+    public static CourseListPanel courseListPanel = new CourseListPanel();
+
     public MainFrame(){
         setTitle("LMS");
 
@@ -21,7 +26,7 @@ public class MainFrame extends JFrame {
         setLocation(500, 100);
         setLayout(new FlowLayout());
         setJMenuBar(new MainMenuBar());
-        add(new StudentListPanel());
+        add(studentListPanel);
 
         setVisible(true);
     }

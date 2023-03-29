@@ -16,7 +16,7 @@ public class StudentListPanel extends JPanel {
         JScrollPane scroll = new JScrollPane(table);
         add(scroll);
 
-        StudentJPopUpMenu studentJPopUpMenu = new StudentJPopUpMenu();
+        StudentJPopUpMenu studentJPopUpMenu = new StudentJPopUpMenu(table);
 
         table.setComponentPopupMenu(studentJPopUpMenu);
 
@@ -24,7 +24,8 @@ public class StudentListPanel extends JPanel {
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if (e.getButton() == 3) studentJPopUpMenu.show(table, e.getX(), e.getY());
+                int currentRow = table.rowAtPoint(e.getPoint());
+                table.setRowSelectionInterval(currentRow, currentRow);
             }
         });
     }

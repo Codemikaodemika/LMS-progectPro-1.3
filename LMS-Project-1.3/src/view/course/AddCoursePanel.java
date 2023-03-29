@@ -1,6 +1,7 @@
 package view.course;
 
 import model.Course;
+import repository.CourseRepository;
 import view.MainFrame;
 
 import javax.swing.*;
@@ -19,6 +20,7 @@ public class AddCoursePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (!title.getText().isEmpty() && !description.getText().isEmpty()){
                     new Course(title.getText(), description.getText());
+                    CourseRepository.insert2(title.getText(), description.getText());
                     title.setText("");
                     description.setText("");
                     MainFrame.addCourseFrame.setVisible(false);

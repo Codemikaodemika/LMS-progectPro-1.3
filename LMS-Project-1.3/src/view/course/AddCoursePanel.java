@@ -20,7 +20,7 @@ public class AddCoursePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (!title.getText().isEmpty() && !description.getText().isEmpty()){
                     new Course(title.getText(), description.getText());
-                    CourseRepository.insert2(title.getText(), description.getText());
+                    CourseRepository.insert(title.getText(), description.getText());
                     title.setText("");
                     description.setText("");
                     MainFrame.addCourseFrame.setVisible(false);

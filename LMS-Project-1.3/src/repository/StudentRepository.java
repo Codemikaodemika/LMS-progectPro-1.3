@@ -45,4 +45,39 @@ public class StudentRepository {
             System.out.println(e.getMessage());
         }
     }
+    public static void updateStudent(int id, String name, String surname){
+        String query = "update students set name=?, surname=? where id=?";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, login, password);
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            statement.setString(1, name);
+            statement.setString(2, surname);
+            statement.setInt(3, id);
+            statement.executeUpdate();
+
+            connection.close();
+        } catch (Exception e){
+            System.out.println("Не удалось подключиться к базе данных");
+            System.out.println(e.getMessage());
+        }
+    }
+    public static void deleteStudent(int id){
+        String query = "delete from students where id=?";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, login, password);
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            statement.setInt(1, id);
+            statement.executeUpdate();
+
+            connection.close();
+        } catch (Exception e){
+            System.out.println("Не удалось подключиться к базе данных");
+            System.out.println(e.getMessage());
+        }
+
+    }
 }

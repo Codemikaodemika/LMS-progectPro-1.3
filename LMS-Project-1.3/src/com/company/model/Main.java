@@ -10,6 +10,6 @@ public class Main {
     public static MainFrame mainFrame = new MainFrame();
     public static void main(String[] args) {
         StudentRepository.getAll();
-        CourseRepository.getAll2();
+        CourseRepository.getAll();
     }
 }

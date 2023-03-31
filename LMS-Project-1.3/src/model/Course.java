@@ -1,5 +1,8 @@
 package model;
 
+import repository.CourseRepository;
+import repository.StudentRepository;
+
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
@@ -12,6 +15,12 @@ public class Course {
     static ArrayList<Course> list = new ArrayList<>();
 
     private static int lastID = 0;
+
+    public static void delete(int id, int index){
+        list.remove(index);
+        model.removeRow(index);
+        CourseRepository.deleteCourse(id);
+    }
 
     public Course(String title, String description) {
         this.id = ++lastID;

@@ -32,6 +32,20 @@ public class Course {
         this.id = id;
         this.setPropeties(title, description);
     }
+
+    public static DefaultTableModel getModelCourses(Student student) {
+        DefaultTableModel model1 = new DefaultTableModel(headers, 0);
+        for (Course course: student.getCourses()) {
+            model1.addRow(
+                    new Object[]{
+                            course.getId(),
+                            course.getTitle(),
+                            course.getDescription()
+                    }
+            );
+        }
+        return model1;
+    }
     public void setPropeties(String title, String description){
         this.title = title;
         this.description = description;

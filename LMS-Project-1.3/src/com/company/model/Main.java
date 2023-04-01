@@ -1,6 +1,7 @@
 package com.company.model;
 
 import repository.CourseRepository;
+import repository.EnrollmentRepository;
 import repository.StudentRepository;
 import view.MainFrame;
 
@@ -11,5 +12,6 @@ public class Main {
     public static void main(String[] args) {
         StudentRepository.getAll();
         CourseRepository.getAll();
+        EnrollmentRepository.getAll();
     }
 }

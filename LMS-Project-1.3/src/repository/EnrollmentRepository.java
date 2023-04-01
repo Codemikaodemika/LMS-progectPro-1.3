@@ -11,7 +11,7 @@ public class EnrollmentRepository {
     private static String login = "postgres";
     private static String password = "Codemika13";
     public static void getAll(){
-        String query = "Select * from enrollments";
+        String query = "Select * from enrollmets";
         try {
             Connection connection = DriverManager.getConnection(url, login, password);
             Statement statement = connection.createStatement();
@@ -19,10 +19,13 @@ public class EnrollmentRepository {
 
             while (resultSet.next()){
                 String id = resultSet.getString("id");
-                String studentid = resultSet.getString("studentid");
-                String courseid = resultSet.getString("courseid");
-                new CourseEnrollment(Integer.parseInt(id), Student.getStudentById(studentid), Course.getCourseById(courseid));
+                int studentid = resultSet.getInt("studentid");
+                int courseid = resultSet.getInt("courseid");
+                if (Student.getStudentById(studentid) != null && Course.getCourseById(courseid) != null) {
+                    new CourseEnrollment(Integer.parseInt(id), Student.getStudentById(studentid), Course.getCourseById(courseid));
+                }
             }
+
             connection.close();
         }
         catch (Exception e){
@@ -30,15 +33,15 @@ public class EnrollmentRepository {
             System.out.println(e.getMessage());
         }
     }
-    public static void insert(String name, String surname){
-        String query = "insert into students(name, surname) values(?, ?)";
+    public static void insertEnrollmet(int studentid, int courseid){
+        String query = "insert into enrollmets(studentid, courseid) values(?, ?)";
 
         try {
             Connection connection = DriverManager.getConnection(url, login, password);
             PreparedStatement statement = connection.prepareStatement(query);
 
-            statement.setString(1, name);
-            statement.setString(2, surname);
+            statement.setInt(1, studentid);
+            statement.setInt(2, courseid);
             statement.executeUpdate();
 
             connection.close();

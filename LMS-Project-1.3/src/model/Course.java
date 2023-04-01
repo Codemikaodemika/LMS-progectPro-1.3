@@ -15,6 +15,8 @@ public class Course {
     static ArrayList<Course> list = new ArrayList<>();
 
     private static int lastID = 0;
+    static String[] headers = {"Id", "Title", "Description"};
+    public static DefaultTableModel model = new DefaultTableModel(headers, 0);
 
     public static void delete(int id, int index){
         list.remove(index);
@@ -24,13 +26,18 @@ public class Course {
 
     public Course(String title, String description) {
         this.id = ++lastID;
+        this.setPropeties(title, description);
+    }
+    public Course(int id, String title, String description) {
+        this.id = id;
+        this.setPropeties(title, description);
+    }
+    public void setPropeties(String title, String description){
         this.title = title;
         this.description = description;
         list.add(this);
         addRow(this);
     }
-    static String[] headers = {"Id", "Title", "Description"};
-    public static DefaultTableModel model = new DefaultTableModel(headers, 0);
     public static void addRow(Course course){
         model.addRow(
                 new Object[] {
@@ -40,6 +47,14 @@ public class Course {
                 });
 
 
+    }
+
+    public static Course getCourseById(int courseID) {
+        for (Course course: list) {
+            if (course.id == courseID)
+                return course;
+        }
+        return null;
     }
 
     public String toString() {

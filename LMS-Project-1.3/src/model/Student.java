@@ -27,6 +27,15 @@ public class Student {
     }
     public Student(String name, String surname) {
         this.id = ++lastID;
+        this.setPropeties(name, surname);
+    }
+
+    public Student(int id, String name, String surname) {
+        this.id = id;
+        this.setPropeties(name, surname);
+    }
+
+    public void setPropeties(String name, String surname){
         this.name = name;
         this.surname = surname;
         list.add(this);
@@ -43,6 +52,12 @@ public class Student {
 
 
     }
+    public static Student getStudentById(int id){
+        for (Student student: list) {
+            if (student.id == id) return student;
+        }
+        return null;
+    }
 
     public String toString() {
         return this.id + " " + this.name + " " + this.surname;
@@ -57,7 +72,9 @@ public class Student {
         return AcademikPerformance.getMaksByStudentAndCourse(this, course);
     }
 
-
+    public CourseEnrollment addCourse(Course course){
+        return new CourseEnrollment(this, course);
+    }
 
 
     public int getId() {

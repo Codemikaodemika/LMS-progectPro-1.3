@@ -8,9 +8,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class CourseListPanel extends JPanel {
+    JTable table;
     public CourseListPanel(){
-        JTable table = new JTable();
+        table = new JTable();
         table.setModel(Course.model);
+
         JScrollPane scroll = new JScrollPane(table);
         add(scroll);
 

@@ -36,10 +36,12 @@ public class StudentJPopUpMenu extends JPopupMenu {
                 case "save":
                     Student.update(id, index, name, surname);
                     break;
+                case "more":
+                    break;
                 case "delete":
                     Student.delete(id, index);
                 case "enroll":
-                    new ChoiceCourse();
+                    new ChoiceCourse(Student.getStudentById(id));
             }
 
         }

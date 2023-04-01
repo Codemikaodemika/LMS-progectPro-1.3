@@ -1,16 +1,17 @@
 package repository;
 
 import model.Course;
+import model.CourseEnrollment;
 import model.Student;
 
 import java.sql.*;
 
-public class CourseRepository {
+public class EnrollmentRepository {
     public static String url = "jdbc:postgresql://localhost:5432/postgres";
     private static String login = "postgres";
     private static String password = "Codemika13";
     public static void getAll(){
-        String query = "Select * from courses";
+        String query = "Select * from enrollments";
         try {
             Connection connection = DriverManager.getConnection(url, login, password);
             Statement statement = connection.createStatement();
@@ -18,26 +19,26 @@ public class CourseRepository {
 
             while (resultSet.next()){
                 String id = resultSet.getString("id");
-                String title = resultSet.getString("title");
-                String description = resultSet.getString("description");
-                new Course(Integer.parseInt(id), title, description);
+                String studentid = resultSet.getString("studentid");
+                String courseid = resultSet.getString("courseid");
+                new CourseEnrollment(Integer.parseInt(id), Student.getStudentById(studentid), Course.getCourseById(courseid));
             }
             connection.close();
         }
-        catch (Exception e) {
+        catch (Exception e){
             System.out.println("Не удалось подключиться к базе данных");
             System.out.println(e.getMessage());
         }
     }
-    public static void insert(String title, String description){
-        String query = "insert into courses(title, description) values(?, ?)";
+    public static void insert(String name, String surname){
+        String query = "insert into students(name, surname) values(?, ?)";
 
         try {
             Connection connection = DriverManager.getConnection(url, login, password);
             PreparedStatement statement = connection.prepareStatement(query);
 
-            statement.setString(1, title);
-            statement.setString(2, description);
+            statement.setString(1, name);
+            statement.setString(2, surname);
             statement.executeUpdate();
 
             connection.close();
@@ -46,22 +47,4 @@ public class CourseRepository {
             System.out.println(e.getMessage());
         }
     }
-    public static void deleteCourse(int id){
-        String query = "delete from courses where id=?";
-
-        try {
-            Connection connection = DriverManager.getConnection(url, login, password);
-            PreparedStatement statement = connection.prepareStatement(query);
-
-            statement.setInt(1, id);
-            statement.executeUpdate();
-
-            connection.close();
-        } catch (Exception e){
-            System.out.println("Не удалось подключиться к базе данных");
-            System.out.println(e.getMessage());
-        }
-
-    }
-
 }

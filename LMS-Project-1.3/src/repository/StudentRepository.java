@@ -19,7 +19,7 @@ public class StudentRepository {
                 String id = resultSet.getString("id");
                 String name = resultSet.getString("name");
                 String surname = resultSet.getString("surname");
-                new Student(name, surname);
+                new Student(Integer.parseInt(id), name, surname);
             }
             connection.close();
         }
